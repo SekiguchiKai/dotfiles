@@ -5,7 +5,14 @@ source ~/.zplug/init.zsh
 autoload -U compinit
 compinit
 
-# ディレクトリ名を入力だけでcd可能
+# プロンプト
+# 上段カレントディレクトリ 下段ユーザー名@ホスト名
+# プロンプト項目設定: https://qiita.com/yamagen0915/items/77fb78d9c73369c784da
+# プロンプト色設定: https://qiita.com/mollifier/items/40d57e1da1b325903659
+PROMPT='%F{cyan}%~%f
+%F{green}%n@%m $%f '
+
+# ディレクトリ名を入力のみでcd可能に
 setopt auto_cd
 
 # 履歴ファイルの保存先
@@ -14,32 +21,14 @@ export HISTFILE=${HOME}/.zsh_history
 HISTSIZE=10000 
 # 履歴ファイル保存の履歴の数
 SAVEHIST=10000 
-
 # 補完時に履歴を自動展開         
 setopt hist_expand
-#補完候補を詰めて表示
-setopt LIST_PACKED
-#複数のリダイレクトやパイプに対応
-setopt MULTIOS
-#履歴がfullの場合はFIFO
-setopt HIST_EXPIRE_DUPS_FIRST
-#履歴検索で、重複を飛ばす
-setopt HIST_FIND_NO_DUPS
-#重複する履歴を保持しない
-setopt HIST_IGNORE_ALL_DUPS
-#履歴を共有
-setopt SHARE_HISTORY
-#補完時に履歴を自動的に展開
-setopt HIST_EXPAND
-#Wordの途中でもカーソル位置で補完
-setopt COMPLETE_IN_WORD
 
 #履歴のインクリメンタル検索でワイルドカード利用可能
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
 # 入力途中に履歴から候補を補完
-# ヒット後にカーソル位置を変更する
 # 参考: https://masutaka.net/chalow/2014-05-18-2.html
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -62,10 +51,28 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # ヒストリサーチ: https://github.com/zsh-users/zsh-history-substring-search
 zplug "zsh-users/zsh-history-substring-search"
 
+#補完候補を詰めて表示
+setopt LIST_PACKED
+#複数のリダイレクトやパイプに対応
+setopt MULTIOS
+#履歴がfullの場合はFIFO
+setopt HIST_EXPIRE_DUPS_FIRST
+#履歴検索で、重複を飛ばす
+setopt HIST_FIND_NO_DUPS
+#重複する履歴を保持しない
+setopt HIST_IGNORE_ALL_DUPS
+#履歴を共有
+setopt SHARE_HISTORY
+#補完時に履歴を自動的に展開
+setopt HIST_EXPAND
+#Wordの途中でもカーソル位置で補完
+setopt COMPLETE_IN_WORD
+
 # anyenv: https://github.com/riywo/anyenv
 # env系をまとめて管理
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
+
 
 # Go
 export GOPATH=$HOME/go
