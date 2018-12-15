@@ -15,6 +15,12 @@ PROMPT='%F{cyan}%~%f
 # ディレクトリ名を入力のみでcd可能に
 setopt auto_cd
 
+# lsの色付け
+# https://news.mynavi.jp/article/zsh-9/
+export LSCOLORS=exfxcxdxbxegedabagacad
+alias ls="ls -G"
+zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+
 # 履歴ファイルの保存先
 export HISTFILE=${HOME}/.zsh_history
 # メモリ保存の履歴の数
