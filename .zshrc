@@ -12,6 +12,29 @@ compinit
 PROMPT='%F{cyan}%~%f
 %F{green}%n@%m $%f '
 
+# バージョン管理システムの表示
+# 参考: http://tkengo.github.io/blog/2013/05/12/zsh-vcs-info/
+# 参考: https://techblog.recochoku.jp/5644
+# 参考: https://qiita.com/ToruIwashita/items/fa114effda34214c9371
+# 参考: http://www.sirochro.com/note/terminal-zsh-prompt-customize/
+# バージョン管理システム表示用の関数読み込み
+autoload -Uz vcs_info 
+# unstagedstrやstagedstrをformatに適用可能にする
+zstyle ':vcs_info:git:*' check-for-changes true
+# ワーキングツリーに編集済みのファイルが存在する状態(編集済みのファイルがあり、addされる前状態)
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}--working three(please add)--"
+# ステージングにファイルが存在する状態(addされた状態)
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}-staging<index>(please commit)-"
+# 表示フォーマットの指定(# 色付けあり)
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+## アクション時のフォーマットの指定(# 色付けあり)
+zstyle ':vcs_info:*' actionformats '[%b|%F{red}%a]'
+# プロンプト表示毎にバージョン管理システム情報の取得
+precmd () { vcs_info }
+# 右に表示
+setopt prompt_subst
+RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+
 # ディレクトリ名を入力のみでcd可能に
 setopt auto_cd
 
