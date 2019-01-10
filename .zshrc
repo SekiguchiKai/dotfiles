@@ -40,7 +40,7 @@ setopt auto_cd
 
 # lsの色付け
 # https://news.mynavi.jp/article/zsh-9/
-export LSCOLORS=exfxcxdxbxegedabagacad
+export LSCOLORS=ehfxcxdxbxegedabagacad
 alias ls="ls -G"
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
@@ -101,7 +101,6 @@ setopt COMPLETE_IN_WORD
 # env系をまとめて管理
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
-
 
 # Go
 export GOPATH=$HOME/go
