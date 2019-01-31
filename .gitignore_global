@@ -1,0 +1,15 @@
+# Mac
+.DS_Store
+
+# JavaScript
+node_modules/
+
+# GAE
+appengine-generated/
+
+# Go
+vendor/
+.go-env
+
+# IDE
+.idea/
