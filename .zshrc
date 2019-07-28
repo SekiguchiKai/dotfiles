@@ -139,3 +139,6 @@ zplug load --verbose
 # https://qiita.com/b4b4r07/items/f37aadef0b3f740e8c14
 # https://qiita.com/Jung0/items/300f8b83520e56766f22
 # https://qiita.com/kotashiratsuka/items/ae37757aa1d31d1d4f4d
+
+// Macのsleep
+alias sleep="osascript -e 'tell application \"Finder\" to sleep'"
